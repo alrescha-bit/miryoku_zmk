@@ -1,0 +1,7 @@
+# Copyright 2026 Antigravity
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=emjetech/zmk-sofle
+outboard_ref=master
+outboard_from=boards/shields/sofle
+outboard_to=boards/shields/sofle

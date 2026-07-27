@@ -4,3 +4,107 @@
 #include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/60/sofle.h"
 #include "../miryoku/miryoku.dtsi"
+
+#include <dt-bindings/zmk/pointing.h>
+
+&pro_micro_i2c {
+    status = "okay";
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <64>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <63>;
+        segment-remap;
+        com-seq;
+        prechargep = <0x22>;
+    };
+};
+
+/ {
+    // Add custom scroll encoder behavior if pointing/mouse-keys is enabled
+    #if defined (CONFIG_ZMK_POINTING)
+    scroll_encoder: scroll_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        tap-ms = <100>;
+    };
+    #endif
+
+    keymap {
+        BASE {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        EXTRA {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        TAP {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        BUTTON {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        NAV {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        MOUSE {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        MEDIA {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        NUM {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        SYM {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+        FUN {
+            #if defined (CONFIG_ZMK_POINTING)
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
+            #else
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            #endif
+        };
+    };
+};

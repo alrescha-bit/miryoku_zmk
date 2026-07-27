@@ -1,0 +1,13 @@
+# Copyright 2026 Antigravity
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build emjetech Sofle nice!nano'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano"]'
+      shield: '["sofle_left","sofle_right"]'
+      alphas: '["qwerty"]'
